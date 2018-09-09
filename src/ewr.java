@@ -1,2 +1,2 @@
-public class ewr {
+public class ewr     {
 }
