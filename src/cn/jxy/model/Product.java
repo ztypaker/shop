@@ -14,6 +14,22 @@ public class Product {
     private Double price;
     private String remark;
     private Date date;
+    private String pic;
+
+    @Override
+    public String toString() {
+        return "Product{" + "id=" + id + ", name='" + name + '\'' + ", price=" + price + ", remark='" + remark + '\'' + ", date=" + date + ", pic='" + pic + '\'' + '}';
+    }
+
+    public Product(String name, Double price, String remark) {
+        this.name = name;
+        this.price = price;
+        this.remark = remark;
+    }
+
+    public Product() {
+
+    }
 
     public Integer getId() {
         return id;
@@ -53,5 +69,13 @@ public class Product {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 }
