@@ -3,77 +3,31 @@ package cn.jxy.dao.impl;
 
 import cn.jxy.model.Product;
 import cn.jxy.utils.JdbcUtils;
+import cn.jxy.utils.RowMapper;
 import sun.applet.Main;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
-public class ProductDaoImpl {
+public class ProductDaoImpl extends BaseDaoImpl<Product> {
 
-//    public static void main(String[] args) {
-//        int i=0;
-//        ProductDaoImpl daoImpl = new ProductDaoImpl();
-//       // daoImpl.save(new Product("demom模型",3.14,"ceshi///"));
-//
-////        Product product = new Product("demom模型",3.19,"ceshi///");
-////        product.setId(2);
-////        daoImpl.update(product);
-//
-////        daoImpl.delete(4);
-//        System.out.println(daoImpl.getById(1));
-//    }
+
 
     //查询
     public Product getById(int id){
-        String sql =   "SELECT * FROM product WHERE id = ?";
+        String sql =   "SELECT id,name FROM product WHERE id = ?";
 //1.获取connection链接对象
         Product product = null;
-        Connection conn = null;
-        PreparedStatement pre = null;
-        ResultSet rs = null;
-        //2.执行SQL语句
-        try {
-            conn = JdbcUtils.getConnection();
-            pre = conn.prepareStatement(sql);
-            pre.setInt(1,id);
 
-            rs = pre.executeQuery();
-            if(rs.next()){
-                product = new Product();
-                product.setId(rs.getInt("id"));
-                product.setName(rs.getString("name"));
-                product.setPrice(rs.getDouble("price"));
-                product.setRemark(rs.getString("remark"));
-            }
-                return product;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }finally {
-//3.释放资源
-            JdbcUtils.close(rs,pre,conn);
-        }
+        return super.getById(sql,id,Product.class);
     }
+
     public int save(Product product){
         String sql =   "insert into product (name,price,remark) values (?,?,?)";
-//1.获取connection链接对象
-        Connection conn = null;
-        PreparedStatement pre = null;
-        //2.执行SQL语句
-        try {
-            conn = JdbcUtils.getConnection();
-            pre = conn.prepareStatement(sql);
-            pre.setString(1,product.getName());
-            pre.setDouble(2,product.getPrice());
-            pre.setString(3,product.getRemark());
-            return pre.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }finally {
-//3.释放资源
-            JdbcUtils.close(pre,conn);
-        }
+        return super.update(sql, new Object[]{product.getName(),product.getPrice(),product.getRemark()});
 
     }
     public int update(Product product){
@@ -82,20 +36,7 @@ public class ProductDaoImpl {
         Connection conn = null;
         PreparedStatement pre = null;
         //2.执行SQL语句
-        try {
-            conn = JdbcUtils.getConnection();
-            pre = conn.prepareStatement(sql);
-            pre.setString(1,product.getName());
-            pre.setDouble(2,product.getPrice());
-            pre.setString(3,product.getRemark());
-            pre.setInt(4,product.getId());
-            return pre.executeUpdate();//负责update,delate,save等操作
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }finally {
-//3.释放资源
-            JdbcUtils.close(pre,conn);
-        }
+        return super.update(sql, new Object[]{product.getName(),product.getPrice(),product.getRemark(),product.getId()});
 
     }
     public int delete(int id){
@@ -104,17 +45,25 @@ public class ProductDaoImpl {
         Connection conn = null;
         PreparedStatement pre = null;
         //2.执行SQL语句
-        try {
-            conn = JdbcUtils.getConnection();
-            pre = conn.prepareStatement(sql);
-            pre.setInt(1,id);
-            return pre.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }finally {
-//3.释放资源
-            JdbcUtils.close(pre,conn);
-        }
+        return super.update(sql, new Object[]{id});
 
+    }
+
+//    @Override//不灵活。
+//    public Product getRow(ResultSet rs) throws SQLException {
+//        Product product = null;
+//        product = new Product();
+//        product.setId(rs.getInt("id"));
+//        product.setName(rs.getString("name"));
+//        product.setPrice(rs.getDouble("price"));
+//        product.setRemark(rs.getString("remark"));
+//
+//        return product;
+//    }
+
+    public List<Product> queryByName(String keyword){
+        String sql = "select * from product where name like ? ";
+
+        return super.queryByName(sql,new Object[]{"%"+keyword+"%"},Product.class);
     }
 }

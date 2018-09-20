@@ -4,7 +4,10 @@ import cn.jxy.dao.impl.ProductDaoImpl;
 import cn.jxy.model.Product;
 import org.junit.Test;
 import org.junit.Before; 
-import org.junit.After; 
+import org.junit.After;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 /** 
 * ProductDaoImpl Tester. 
@@ -46,18 +49,25 @@ public void testMain() throws Exception {
 */ 
 @Test
 public void testGetById() throws Exception {
-    System.out.println(daoImpl.getById(1));
+    System.out.println(daoImpl.getById(2));
 
-} 
+}
+@Test
+public void testQueryByName() throws Exception {
+    List<Product>productList = daoImpl.queryByName("");
+    for (Product product:productList){
+        System.out.println(product);
+    }
 
-/** 
+}
+    /**
 * 
 * Method: save(Product product) 
 * 
 */ 
 @Test
 public void testSave() throws Exception {
-    daoImpl.save(new Product("demom模型",3.14,"ceshi///"));
+    daoImpl.save(new Product("dededem模型",new BigDecimal(4.14),"ceshi///"));
 } 
 
 /** 
@@ -67,7 +77,7 @@ public void testSave() throws Exception {
 */ 
 @Test
 public void testUpdate() throws Exception {
-    Product product = new Product("dem模型",3.19,"ceshi///");
+    Product product = new Product("dem模型",new BigDecimal(4.14),"ceshi///");
        product.setId(6);
        daoImpl.update(product);
 } 
