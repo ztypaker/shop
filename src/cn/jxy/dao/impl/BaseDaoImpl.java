@@ -98,7 +98,6 @@ public class BaseDaoImpl<T> {
                 }
                 tList.add(model);
             }
-            System.out.println("列的名称为");
             return tList;
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -32,7 +32,6 @@ public class ProductServiceImpl {
 
 
     public List<Product> queryByName(String keyword){
-
         return productDao.queryByName(keyword);
     }
 }

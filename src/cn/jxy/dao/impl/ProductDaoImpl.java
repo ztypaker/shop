@@ -52,7 +52,6 @@ public class ProductDaoImpl extends BaseDaoImpl<Product> {
 
     public List<Product> queryByName(String keyword){
         String sql = "select * from product where name like ? ";
-
         return super.queryByName(sql,new Object[]{"%"+keyword+"%"},Product.class);
     }
 }

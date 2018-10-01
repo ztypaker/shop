@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="/public.jspf" %>
 <html>
   <head>
     <title>添加商品$</title>
@@ -17,11 +18,12 @@
   remark              longtext,
   date                timestamp default CURRENT_TIMESTAMP,
           -->
-        <form action="/shop/servlet/ProductServlet" method="post">
+        <form action="${shop}/servlet/ProductServlet" method="post">
             商品名:<<input type="text" name="name" /><br />
             价格:<<input type="text" name="price" /><br />
             备注:<<input type="text" name="remark" /><br />
             <button type="submit">添加商品</button>
+            <input type="hidden" name="type" value="save" />
         </form>
   </body>
 </html>
