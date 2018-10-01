@@ -50,6 +50,7 @@ public class BaseDaoImpl<T> {
 //给子类使用，因此方法采用PROTECTED
     protected int update(String sql, Object[] param){
         //1.获取connection链接对象
+        System.out.println("********************"+JdbcUtils.class.getName());
         Connection conn = null;
         PreparedStatement pre = null;
         //2.执行SQL语句
@@ -97,6 +98,7 @@ public class BaseDaoImpl<T> {
                 }
                 tList.add(model);
             }
+            System.out.println("列的名称为");
             return tList;
         } catch (Exception e) {
             throw new RuntimeException(e);

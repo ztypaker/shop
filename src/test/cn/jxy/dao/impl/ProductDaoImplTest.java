@@ -67,7 +67,7 @@ public void testQueryByName() throws Exception {
 */ 
 @Test
 public void testSave() throws Exception {
-    daoImpl.save(new Product("dededem模型",new BigDecimal(4.14),"ceshi///"));
+    daoImpl.save(new Product("d",new BigDecimal(4.14),"ceshi///"));
 } 
 
 /** 

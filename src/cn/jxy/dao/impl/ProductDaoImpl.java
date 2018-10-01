@@ -49,17 +49,6 @@ public class ProductDaoImpl extends BaseDaoImpl<Product> {
 
     }
 
-//    @Override//不灵活。
-//    public Product getRow(ResultSet rs) throws SQLException {
-//        Product product = null;
-//        product = new Product();
-//        product.setId(rs.getInt("id"));
-//        product.setName(rs.getString("name"));
-//        product.setPrice(rs.getDouble("price"));
-//        product.setRemark(rs.getString("remark"));
-//
-//        return product;
-//    }
 
     public List<Product> queryByName(String keyword){
         String sql = "select * from product where name like ? ";
