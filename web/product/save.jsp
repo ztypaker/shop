@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="/public.jspf" %>
+<%@include file="/public.jspf"%>
 <html>
   <head>
     <title>添加商品$</title>
@@ -23,7 +23,7 @@
             价格:<<input type="text" name="price" /><br />
             备注:<<input type="text" name="remark" /><br />
             <button type="submit">添加商品</button>
-            <input type="hidden" name="type" value="save" />
+            <input type="hidden" name="type" value="save"/>
         </form>
   </body>
 </html>

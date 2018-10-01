@@ -6,16 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="/public.jspf" %>
+<%@include file="/public.jspf"%>
 <html>
   <head>
-    <title>查询商品$</title>
+    <title>添加商品$</title>
   </head>
   <body>
      <form action="${shop}/servlet/ProductServlet" method="get">
     商品名:<<input type="text" name="keyword" /><br />
     <button type="submit">查询商品</button>
-     <input type="hidden" name="type" value="query" />
+         <input type="hidden" name="type" value="query"/>
      </form>
      <hr />
      <c:if test="${!empty requestScope.productList}">
@@ -34,7 +34,7 @@
              <td>${product.name}</td>
              <td>${product.price}</td>
              <td>${product.remark}</td>
-             <td>更新|<a href="${shop}/servlet/ProductServlet?id=${product.id}&type=delete">删除</a> </td>
+             <td>更新|<a href="${shop}/servlet/ProductServlet?id=${product.id}&type=delete">删除</a></td>
            </tr>
        </c:forEach>
      </table>
