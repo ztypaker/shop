@@ -9,11 +9,11 @@
 <%@include file="/public.jspf"%>
 <html>
   <head>
-    <title>添加商品$</title>
+    <title>查询商品$</title>
   </head>
   <body>
      <form action="${shop}/servlet/ProductServlet" method="get">
-    商品名:<<input type="text" name="keyword" /><br />
+    商品名:<<input type="text" name="keyword" />
     <button type="submit">查询商品</button>
          <input type="hidden" name="type" value="query"/>
      </form>
@@ -34,7 +34,8 @@
              <td>${product.name}</td>
              <td>${product.price}</td>
              <td>${product.remark}</td>
-             <td>更新|<a href="${shop}/servlet/ProductServlet?id=${product.id}&type=delete">删除</a></td>
+             <td><a href="${shop}/servlet/ProductServlet?id=${product.id}&type=getById">更新</a>
+                 <a href="${shop}/servlet/ProductServlet?id=${product.id}&type=delete">删除</a>|ajax删除</td>
            </tr>
        </c:forEach>
      </table>

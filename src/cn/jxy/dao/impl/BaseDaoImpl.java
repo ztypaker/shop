@@ -90,7 +90,7 @@ public class BaseDaoImpl<T> {
                 T model = (T) tClass.newInstance();
                 for(int i = 1;i <= metaData.getColumnCount();i++){
                     String colName = metaData.getColumnLabel(i);
-                    System.out.println("列的名称为" + colName);
+
                     //根据列的名称，获取相应的属性名称
                     Field name = tClass.getDeclaredField(colName);
                     name.setAccessible(true);
